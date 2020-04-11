@@ -27,8 +27,8 @@
 		 Created on:   		03/04/2020
 		 Created by:   		David Pitre
 		 Filename:     		invoke-VTIPEnum.ps1
-		 Version:			0.1
-		 Classification:		Public
+		 Version:		0.1
+		 Classification:	Public
 
 		 TODO
 		 1. Implement logic to better handle Virus Totals API
