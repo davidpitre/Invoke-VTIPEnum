@@ -27,7 +27,7 @@
 		 Created on:   		03/04/2020
 		 Created by:   		David Pitre
 		 Filename:     		invoke-VTIPEnum.ps1
-		 Version:		0.1
+		 Version:		0.2
 		 Classification:	Public
 
 		 TODO
@@ -82,23 +82,22 @@ function Get-VTIPEnum
 			throw "Unable to query Virus Total's API"
 		}
 		
-		$VTIPReport
 		$VTPIPObject = New-Object -TypeName PSCustomObject
 		$VTPIPObject | Add-Member -membertype NoteProperty -Name "IP_Address" -Value ([string]$IP)
 		$VTPIPObject | Add-Member -membertype NoteProperty -Name "Country" -Value ([string]$VTIPReport.country)
 		$VTPIPObject | Add-Member -membertype NoteProperty -Name "AS_Owner" -Value ([string]$VTIPReport.as_owner)
 		$VTPIPObject | Add-Member -membertype NoteProperty -Name "Detected_URLs" -Value ([string]$VTIPReport.detected_urls -join ',')
 		$VTPIPObject | Add-Member -membertype NoteProperty -Name "Observed_hostnames" -Value ([string]$VTIPReport.resolutions.hostname -join ',')
-		[array]$Global:EnrichedIPAddressData += $VTPIPObject
 	}
 	END
 	{
 		Start-Sleep -Seconds 21
+		return $VTPIPObject
 	}
 }
 
 foreach ($IP in $CSVIPAddresses.IPAddress)
 {
-	Get-VTIPEnum -IP $IP | Export-Csv -Path $CSVIPAddressesReportPath -NoClobber -NoTypeInformation -Append
+	Get-VTIPEnum -IP $IP | Export-Csv -Path $CSVIPAddressesReportPath -NoClobber -NoTypeInformation -Append -force -ErrorAction SilentlyContinue
 }
 #endregion
