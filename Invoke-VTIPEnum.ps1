@@ -51,7 +51,7 @@ param
 #Source IP Address list CSV - The column needs to be IPAddress"
 [array]$CSVIPAddresses = Import-Csv -Path $Path
 #The Output URL for the Report
-[array]$CSVIPAddressesReportPath = $OutputPath
+[string]$CSVIPAddressesReportPath = $OutputPath
 #API Key for Virus Total - Use mine for now but its free to get your own
 [string]$VTApiKey = $VirusTotalAPIKey
 #Array object for our collected data
