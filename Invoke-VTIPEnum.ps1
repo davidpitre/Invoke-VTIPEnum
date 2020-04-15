@@ -8,6 +8,10 @@
 		Unless you have a paid for Virus Total API you are limited to a query
 		once every 20 seconds up to 1000 per day, which may result in the script 
 		taking a long time to complete depending on the size of the source list.
+		
+		Use grep to parse a file for IP addresses using the below regex. 
+		grep -E -o '(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)' file2parse.txt  | sort -u
+
 	
 	.PARAMETER Path
 		Input CSV containing a list of IP Addresses with the column name = IPAddress
